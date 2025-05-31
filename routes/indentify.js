@@ -6,6 +6,14 @@ const {findOrCreateUser} = require("../database/database.js");
 router.post('/identify', async(req, res) => {
 	
 
+
+
+  if (req.body.email === null) {
+    req.body.email = ""
+  }if (req.body.phoneNumber === null) {
+    req.body.phoneNumber = ""
+  }
+
 	const email = req.body.email.trim();
 	const phoneNumber = req.body.phoneNumber.trim();
 	
@@ -52,7 +60,7 @@ if (!email && !phoneNumber ) {
 
     const result =  {
       "contact":{
-      "primaryContatctId": primaryID[0],
+      "primaryContactId": primaryID[0],
 			"emails": emails, // first element being email of primary contact 
 			"phoneNumbers": phoneNumbers, // first element being phoneNumber of primary contact
 			"secondaryContactIds": secondaryContactIds // Array of all Contact IDs that are "secondary" to the primary contact  
